@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{title}}</h1>
+        <hr>
+        {% if teams %}
+            
+            <div class="mt-5 mb-5">
+                <div class="d-flex justify-content-between mb-3"> <span>Teams</span> <a href="{{url_for('add_team')}}" class="btn btn-outline-success add">New Teams</a> </div>                
+                    <div class="row g-2">  
+                        {% for team in teams %}                  
+                            <div class="col-md-4">
+                                <div class="card p-2 py-3 text-center">
+                                    <div class="img mb-2"> <img src="{{url_for('static', filename='img/'+team.image)}}" width="70" class="thumbnail"> </div>
+                                    <h5 class="mb-0">{{team.name}}</h5> <small>{{team.city}}</small>
+                                    
+                                    <div class="mt-4 apointment"> <a href="{{url_for('update_team', id=team.id)}}" class="btn btn-success text-uppercase">Update Team</a> </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>                
+            </div>
+        {% else %}
+            <h3 class="text-center">No Teams!</h3>
+        {% endif %}
+        
+        
+    </div>
+{% endblock %}
